@@ -209,7 +209,6 @@ console.log(tips);
 const total = [bills[0]+tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(total);
-*/
 
 const jonas = {
     firstName: 'Jonas',
@@ -244,3 +243,219 @@ console.log(jonas);
 //Jonas has 3 friends and his best friend is called Michael
 
 console.log(`${jonas['firstName']} has ${jonas['friends'].length} friends and his best friend is called ${jonas.friends[0]}.`);
+
+
+
+const jonas = {
+    firstName: 'Jonas',
+    lastName: 'Schmedtmann',
+    birthYear: 1991,
+    job: 'teacher',
+    friends: ['Michael', 'Peter', 'Steven'],
+    hasDriversLicense: true,
+
+    // calcAge: function(birthYear){
+    //     return 2037 - birthYear;
+    // }
+
+    // calcAge: function(){
+    //     return 2037 - this.birthYear;
+    // }
+
+    calcAge: function(){
+        this.age = 2037 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function(){
+        return (`${this.firstName} is a ${this.calcAge()} year old ${this.job} and ${this.hasDriversLicense ? 'has a drivers license' : 'does not have a drivers license'}` );
+    }
+};
+
+
+//Challenge - display 'Jonas is a 46 year old teacher and has a driver's license'
+
+// console.log(`${jonas.firstName} is a ${jonas.age} year old ${jonas.job} and ${jonas.hasDriversLicense = true ? 'has a drivers license' : 'does not have a drivers license'}` );
+
+console.log(jonas.getSummary());
+
+
+
+//Coding challenge #3
+
+const mark = {
+    fullName: 'Mark Miller',
+    height: 1.69,
+    weight: 78,
+
+    calcBMI: function(){
+        this.BMI = (this.weight / (this.height ** 2));
+        return this.BMI;
+
+    }
+}
+
+const john = {
+    fullName: 'John Smith',
+    height: 1.95,
+    weight: 92,
+
+    calcBMI: function(){
+        this.BMI = (this.weight / (this.height ** 2));
+        return this.BMI;
+
+    }
+}
+
+mark.calcBMI();
+john.calcBMI();
+
+if(mark.BMI > john.BMI){
+    console.log(`${mark.fullName}'s BMI (${mark.BMI}) is higher than ${john.fullName}'s BMI (${john.BMI})`);
+} else if(john.BMI > mark.BMI){
+    console.log(`${john.fullName}'s BMI (${john.BMI}) is higher than ${mark.fullName}'s BMI (${mark.BMI})`);
+} else{
+    console.log('They have equal BMIs');
+}
+
+
+
+for(let rep = 1; rep <= 10; rep ++){
+    console.log(`Lifting weights repetition ${rep}`);
+}
+
+
+const jonas = [
+'Jonas',
+'Schmedtman',
+2037 - 1991,
+'teacher',
+['Michael', 'Peter', 'Steven']
+];
+
+const types = [];
+
+for(let i = 0; i < jonas.length; i++){
+    console.log(jonas[i], typeof jonas[i])
+    // types[i] = typeof jonas[i];
+    types.push(typeof jonas[i]);
+}
+
+const years = [1991, 2007, 1969, 2020];
+const age =[];
+
+for(let i = 0; i < years.length; i++){
+    // age [i] = 2037 - years[i];
+    age.push(2037 - years[i]);
+}
+
+console.log(age);
+
+
+for(let i = 0; i < jonas.length; i++){
+    if(typeof jonas[i] !== 'string') continue;
+    console.log(jonas[i], typeof jonas[i])
+}
+
+//Loop - break
+
+const jonas = [
+    'Jonas',
+    'Schmedtman',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven']
+];
+
+for(let i = 0; i < jonas.length; i++){
+    if(typeof jonas[i] === 'number') break;
+    console.log(jonas[i], typeof jonas[i])
+}
+
+
+
+
+
+//Loop reversal
+
+const jonas = [
+    'Jonas',
+    'Schmedtman',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven']
+];
+
+
+for(let i = jonas.length-1; i >= 0; i--){
+    console.log(i, jonas[i]);
+}
+
+for(let exercise = 1; exercise <= 3; exercise++){
+    console.log(`----Starting exercise ${exercise}`);
+
+    for(let rep = 1; rep < 6; rep ++){
+        console.log(`Lifting weights repetition ${rep}`);
+    }
+}
+
+
+for(let rep = 1; rep <= 10; rep ++){
+    console.log(`Lifting weights repetition ${rep}`);
+}
+
+
+let rep = 1;
+while(rep <= 10){
+    console.log(`Lifting weights repetition ${rep}`);
+    rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6 + 1);
+console.log(dice);
+
+// while(dice !== 6){
+//     console.log(`You rolled a ${dice}`);
+// }
+
+
+*/
+
+//Coding challenge #4
+
+const bills = [22, 295, 176, 440, 37, 205, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+function calcTip(bill){
+    let tip;
+    if(bill >= 50 && bill <=300){
+        tip = 0.15 * bill;
+    } else {
+        tip = 0.2 * bill;
+    }
+
+    return tip;
+}
+
+for (let i=0; i<=9; i++){
+    tips.push(calcTip(bills[i]));
+    totals.push(bills[i] + tips[i]);
+}
+
+console.log(bills, tips, totals);
+
+
+
+function calcAverage(arr){
+    let sum = 0;
+    for(let i = 0; i < arr.length; i++){
+        sum = arr[i] + sum;
+    }
+    return sum / arr.length;
+    
+}
+
+console.log(calcAverage([2, 3, 6]));
+console.log(calcAverage(totals));
