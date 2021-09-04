@@ -4,6 +4,40 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+
+// const cutFlights = flights.replaceAll('+', '\n').replaceAll(';', ' ').replaceAll('_', ' ');
+
+for(const flight of flights.split('+')){
+  // console.log(flight);
+
+  const individualFlight = flight.split(';');
+  // console.log(individualFlight);
+
+  const descrip = individualFlight[0].replace('_', '').replace('_', ' ').replace('Delayed', '🛑 Delayed');
+  // console.log(descrip);
+
+  const from = individualFlight[1].slice(0,3).toUpperCase();
+  // console.log(from);
+
+  const to = individualFlight[2].slice(0, 3).toUpperCase();
+  // console.log(to);
+
+  const time = `(${individualFlight[3]})`;
+  // console.log(time);
+  
+  console.log(`${descrip} from ${from} to ${to} ${time}`.padStart(50));
+};
+
+
+
+
+
+
 // Data needed for first part of the section
 
 const weekdays = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
@@ -60,8 +94,162 @@ const restaurant = {
   },
 };
 
-
 /*
+//Split and join
+console.log('a+very+nice+string'.split('+'));
+
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+const newName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitaliseName = function (name) {
+  const nameArray = name.split(' ');
+  console.log(nameArray);
+  const namesUpper = [];
+
+  for (const word of nameArray) {
+    namesUpper.push(word[0].toUpperCase() + word.slice(1));
+    // console.log(word[0]);
+
+    // namesUpper.push(word.replace(word[0], word[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitaliseName('Jessica ann smith davis');
+capitaliseName('julian goh');
+
+//Padding
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+'));
+
+const maskCreditCard = function (number) {
+  const str = String(number);
+  const strLength = str.length;
+  console.log(str.slice(-4).padStart(strLength, 'X'));
+};
+
+maskCreditCard(4312312497214819);
+maskCreditCard('4312312412312397214819');
+
+//Repeat
+
+const message2 = 'Bad weather... All departures delayed... ';
+
+console.log(message2.repeat(2));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+
+// const test = '4312312497214819';
+// console.log(test.slice(-4));
+
+const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+const passenger = 'jOnAS';
+
+const passengerLower = passenger.toLowerCase();
+
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+//Email
+
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n';
+
+// console.log(loginEmail);
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+const normalisedEmail = loginEmail.toLowerCase().trim();
+console.log(normalisedEmail);
+
+console.log(email === normalisedEmail);
+
+const priceGB = '$288,97';
+const priceUS = priceGB.replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23, boarding door 23!';
+// console.log(announcement.replace('door', 'gate'). replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+console.log(announcement.replace(/door/g, 'gate'));
+
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase(); //Good practice when accepting strings
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+  console.log('You are not allowed on board');
+  } else {
+    console.log('Welcome aboard');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
+
+console.log(plane[1]);
+
+console.log(airline.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+console.log(airline.slice(4));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function(seat) {
+  //B and E are middle seats
+
+  const seatColumn = seat.slice(seat.lastIndexOf(' '));
+  // console.log(seatColumn);
+
+  if(seatColumn === 'B' || seatColumn ==='E'){
+    console.log(`${seat} is a middle seat!`);
+  } else{
+    console.log(`${seat} is not a middle seat.`)
+  };
+};
+
+const test = '11B';
+console.log(test.slice(test.lastIndexOf()));
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('jonas'));
+
+
+
+
 const ordersSet = new Set([
   'Pasta',
   'Pizza',
@@ -599,8 +787,6 @@ const scorers = {
 };
 
 
-*/
-
 //Coding challenge 3
 
 const gameEvents = new Map([
@@ -651,3 +837,45 @@ const gameEvents = new Map([
       console.log(`[SECOND HALF] ${min}: ${event}`)
     };
   };
+  
+
+*/
+
+//Coding Challenge #4
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  console.log(text);
+
+  const textArray = text.split('\n');
+  console.log(textArray);
+  console.log(textArray.entries());
+
+  for (const [i, word] of textArray.entries()) {
+    const lowerCase = word.toLowerCase().trim();
+    const afterUnderscore = lowerCase.slice(lowerCase.indexOf('_') + 1);
+    const beforeUnderscore = lowerCase.slice(0, lowerCase.indexOf('_'));
+    const capitalise =
+      afterUnderscore[0].toUpperCase() + afterUnderscore.slice(1);
+    const output = beforeUnderscore + capitalise;
+
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+
+/*
+const test = ['Some_Variable'];
+for(const word of test){
+  const lowerCase = word.toLowerCase();
+  console.log(lowerCase);
+  const afterUnderscore = lowerCase.slice(lowerCase.indexOf('_') + 1);
+  const beforeUnderscore = lowerCase.slice(0,(lowerCase.indexOf('_')));
+  const capitalise = afterUnderscore[0].toUpperCase() + afterUnderscore.slice(1);
+  const output = beforeUnderscore + capitalise;
+  console.log(output);
+  // console.log(capitalise);
+}
+*/
