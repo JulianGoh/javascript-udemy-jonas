@@ -207,7 +207,7 @@ const addTax1 = function(rate){
 const totalTax = addTax1(0.23);
 totalTax(100);
 
-*/
+
 
 const poll = {
   question:
@@ -252,3 +252,93 @@ const bonus = {
 const bonusDisplay = poll.displayResults.bind(bonus);
 
 bonusDisplay('string');
+
+
+const runOnce = function(){
+  console.log('This will never run again');
+}
+
+// runOnce();
+
+(function(){
+  console.log('This will never run again');
+});
+
+(() => console.log('This will never run again'))();
+
+
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function(){
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  }
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+
+//Example 1
+
+let f;
+
+const g = function(){
+  const a = 23;
+  f = function(){
+    console.log(a * 2);
+  }
+}
+
+const h = function(){
+  const b = 777;
+  f = function(){
+    console.log(b * 2);
+  }
+}
+
+g();
+f();
+h();
+f();
+
+// Example 2
+
+const boardPassengers = function(n, wait){
+  const perGroup = n / 3;
+  setTimeout(function(){
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+}
+
+// setTimeout(function(){
+//   console.log('Timer');
+// }, 1000);
+
+const perGroup = 1000;
+boardPassengers(180,3);
+
+
+*/
+
+// Coding challenge
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  
+
+  header.addEventListener('click', function(){
+    header.style.color = 'blue';
+  });
+})();
