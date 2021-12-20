@@ -2,11 +2,21 @@
   "name": "18-forkify",
   "version": "1.0.0",
   "description": "Recipe application",
-  "main": "index.html",
+  "main": "controller.js",
   "scripts": {
-    "test": "parcel index.html",
+    "start": "parcel index.html",
     "build": "parcel build index.html"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
+    "parcel": "^2.0.0",
+    "sass": "^1.26.10"
+  },
+  "dependencies": {
+    "core-js": "^3.20.0",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.9"
+  }
 }
